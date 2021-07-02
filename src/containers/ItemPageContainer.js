@@ -22,7 +22,13 @@ const mapDispatchToProps = (dispatch) => {
     return {
         initLoad: () => {
             dispatch(actions.getListItem())
+        },
+        addData: (data) =>{
+            dispatch(actions.addRequest(data))
         }
+        // postItem: () => {
+        //     dispatch(actions.postItem())
+        // }
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(ItemPageContainer)

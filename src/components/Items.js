@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 
 class Items extends Component {
+    state={
+        nameAdd:''
+    }
     render() {
         let listData = []
         if (this.props.items) {
@@ -16,7 +19,8 @@ class Items extends Component {
         return (
             <div className="">
                 <div>
-                    <button onClick ={()=>this.props.initLoad()} >GET DATA</button>
+                    {/* <input type="text" placeholder="Nhập giá trị" className="inputBox"></input>
+                    <button onClick ={()=>this.props.initLoad()} >GET DATA</button> */}
                     <table className="list-item">
                         <tbody>
                             <tr>
@@ -25,6 +29,16 @@ class Items extends Component {
                             </tr>
                             {listData}
                         </tbody>
+                        <input onChange={(e)=>{
+                            this.setState({
+                                nameAdd: e.target.value
+                            })
+                        }}/>
+                        <button onClick={()=>{
+                            this.props.addData({
+                                name: this.state.nameAdd
+                            })
+                        }}>ADD</button>
                     </table>
                 </div>
             </div>
