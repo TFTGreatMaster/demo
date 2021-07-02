@@ -1,6 +1,7 @@
 import { put, takeEvery } from "redux-saga/effects";
 import getItems from '../fetchAPI/getItems';
 import addApi from '../fetchAPI/addApi';
+import deleteApi from '../fetchAPI/deleteApi';
 import * as types from '../constant';
 function* getListItem() {
     try {
@@ -36,16 +37,26 @@ function* postItem(action) {
         })
     }
 }
-function* postItem(action) {
+function* deleteItem(action) {
     try {
         yield deleteApi(action.payload)
         yield put({
             type: types.DELETE_ITEM_SUCCESS,
         })
-        
+        yield put({
+            type: types.GET_ITEM_REQUEST,
+        })
+    } catch (error) {
+        yield put({
+            type: types.GET_ITEM_FAILURE,
+            payload: {
+                errMessage: error.message
+            }
+        })
     }
 }
 export const ItemSaga = [
     takeEvery(types.GET_ITEM_REQUEST, getListItem),
     takeEvery(types.ADD_ITEM_REQUEST, postItem),
+    takeEvery(types.DELETE_ITEM_REQUEST, deleteItem)
 ]

@@ -27,8 +27,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(actions.addRequest(data))
         },
         deleteItem: (data) => {
-            console.log(data);
-            dispatch(actions.addRequest(data))
+            dispatch(actions.deleteRequest(data))
         }
 
     }

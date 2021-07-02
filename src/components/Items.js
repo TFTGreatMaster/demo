@@ -10,10 +10,14 @@ class Items extends Component {
             listData = this.props.items.map((item, key) => {
                 return (
                     <tr key={key}>
-                        <th>{item.id} onClick={() => {
-                            this.props.deleteItem(key)
-                        }}</th>
+                        <th>{item.id} </th>
                         <th>{item.name}</th>
+                        <th><button onClick={() => {
+                            this.props.deleteItem(item.id)
+                        }}>DELETE</button></th>
+                        <th><button onClick={() => {
+                            this.props.updateItem(item.id)
+                        }}>Update</button></th>
                     </tr>
                 )
             })
@@ -21,26 +25,26 @@ class Items extends Component {
         return (
             <div className="">
                 <div>
-                    {/* <input type="text" placeholder="Nhập giá trị" className="inputBox"></input>
-                    <button onClick ={()=>this.props.initLoad()} >GET DATA</button> */}
+                    <input onChange={(e) => {
+                        this.setState({
+                            nameAdd: e.target.value
+                        })
+                    }} />
+                    <button onClick={() => {
+                        this.props.addData({
+                            name: this.state.nameAdd
+                        })
+                    }}>ADD</button>
                     <table className="list-item">
                         <tbody>
                             <tr>
                                 <th className="id">ID của dữ liệu</th>
                                 <th className="name">tên của dữ liệu</th>
+                                <th >action</th>
                             </tr>
                             {listData}
                         </tbody>
-                        <input onChange={(e) => {
-                            this.setState({
-                                nameAdd: e.target.value
-                            })
-                        }} />
-                        <button onClick={() => {
-                            this.props.addData({
-                                name: this.state.nameAdd
-                            })
-                        }}>ADD</button>
+
                     </table>
                 </div>
             </div>

@@ -12,7 +12,7 @@ export function addRequest(payload){
 }
 export function deleteRequest(payload){
     return({
-        type: types.DELETE_ITEM_REQUEST.ADD_ITEM_REQUEST,
+        type: types.DELETE_ITEM_REQUEST,
         payload
     })
 }
