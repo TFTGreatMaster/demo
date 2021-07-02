@@ -36,6 +36,15 @@ function* postItem(action) {
         })
     }
 }
+function* postItem(action) {
+    try {
+        yield deleteApi(action.payload)
+        yield put({
+            type: types.DELETE_ITEM_SUCCESS,
+        })
+        
+    }
+}
 export const ItemSaga = [
     takeEvery(types.GET_ITEM_REQUEST, getListItem),
     takeEvery(types.ADD_ITEM_REQUEST, postItem),

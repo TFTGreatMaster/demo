@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
 class Items extends Component {
-    state={
-        nameAdd:''
+    state = {
+        nameAdd: ''
     }
     render() {
         let listData = []
@@ -10,7 +10,9 @@ class Items extends Component {
             listData = this.props.items.map((item, key) => {
                 return (
                     <tr key={key}>
-                        <th>{item.id}</th>
+                        <th>{item.id} onClick={() => {
+                            this.props.deleteItem(key)
+                        }}</th>
                         <th>{item.name}</th>
                     </tr>
                 )
@@ -29,12 +31,12 @@ class Items extends Component {
                             </tr>
                             {listData}
                         </tbody>
-                        <input onChange={(e)=>{
+                        <input onChange={(e) => {
                             this.setState({
                                 nameAdd: e.target.value
                             })
-                        }}/>
-                        <button onClick={()=>{
+                        }} />
+                        <button onClick={() => {
                             this.props.addData({
                                 name: this.state.nameAdd
                             })
