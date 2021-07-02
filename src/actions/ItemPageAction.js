@@ -10,9 +10,3 @@ export function addRequest(payload){
         payload
     })
 }
-// export function postItem(payload) {
-//     return ({
-//         type: types.POST_ITEM_REQEST,
-//         payload
-//     })
-// }

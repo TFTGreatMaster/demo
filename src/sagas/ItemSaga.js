@@ -11,7 +11,7 @@ function* getListItem() {
         })
     } catch (error) {
         yield put({
-            types: types.GET_ITEM_FAILURE,
+            type: types.GET_ITEM_FAILURE,
             payload: {
                 errMessage: error.message
             }
@@ -29,7 +29,7 @@ function* postItem(action) {
         })
     } catch (error) {
         yield put({
-            types: types.GET_ITEM_FAILURE,
+            type: types.GET_ITEM_FAILURE,
             payload: {
                 errMessage: error.message
             }
