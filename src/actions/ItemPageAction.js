@@ -16,3 +16,9 @@ export function deleteRequest(payload){
         payload
     })
 }
+export function updateRequest(payload){
+    return({
+        type: types.UPDATE_ITEM_REQUEST,
+        payload
+    })
+}

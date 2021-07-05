@@ -28,6 +28,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         deleteItem: (data) => {
             dispatch(actions.deleteRequest(data))
+        },
+        updateData: (data) => {
+            dispatch(actions.updateRequest(data))
         }
 
     }

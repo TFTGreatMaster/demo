@@ -2,7 +2,11 @@ import React, { Component } from "react";
 
 class Items extends Component {
     state = {
-        nameAdd: ''
+        nameAdd: '',
+        nameUpdate: {
+            id: '',
+            name: ''
+        }
     }
     render() {
         let listData = []
@@ -16,25 +20,48 @@ class Items extends Component {
                             this.props.deleteItem(item.id)
                         }}>DELETE</button></th>
                         <th><button onClick={() => {
-                            this.props.updateItem(item.id)
+                            this.setState({
+                                nameUpdate: {
+                                    id: item.id,
+                                    name: item.name
+                                }
+                            })
                         }}>Update</button></th>
-                    </tr>
+
+                    </tr >
                 )
             })
         }
         return (
-            <div className="">
+            <div className="" >
                 <div>
-                    <input onChange={(e) => {
-                        this.setState({
-                            nameAdd: e.target.value
-                        })
-                    }} />
-                    <button onClick={() => {
-                        this.props.addData({
-                            name: this.state.nameAdd
-                        })
-                    }}>ADD</button>
+                    <div>
+                        <input onChange={(e) => {
+                            this.setState({
+                                nameAdd: e.target.value
+                            })
+                        }} />
+                        <button onClick={() => {
+                            this.props.addData({
+                                name: this.state.nameAdd
+                            })
+                        }}>ADD</button>
+                    </div>
+                    <div>
+                        <input value={this.state.nameUpdate.name} onChange={(e) => {
+                            this.setState({
+                                nameUpdate: {
+                                    id: this.state.nameUpdate.id,
+                                    name: e.target.value
+                                }
+                            })
+                        }} />
+                        <button onClick={() => {
+                            this.props.updateData({
+                                nameUpdate: this.state.nameUpdate
+                            })
+                        }}>update</button>
+                    </div>
                     <table className="list-item">
                         <tbody>
                             <tr>
