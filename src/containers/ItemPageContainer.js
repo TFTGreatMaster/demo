@@ -31,6 +31,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         updateData: (data) => {
             dispatch(actions.updateRequest(data))
+        },
+        searchItem: (data) => {
+            dispatch(actions.searchRequest(data))
         }
 
     }

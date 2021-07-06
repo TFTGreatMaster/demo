@@ -6,7 +6,8 @@ class Items extends Component {
         nameUpdate: {
             id: '',
             name: ''
-        }
+        },
+        dataSearch: ''
     }
     render() {
         let listData = []
@@ -61,6 +62,18 @@ class Items extends Component {
                                 nameUpdate: this.state.nameUpdate
                             })
                         }}>update</button>
+                    </div>
+                    <div>
+                        <input type="text" onChange={(e) => {
+                            this.setState({
+                                nameSearch: e.target.value
+                            })
+                        }} />
+                        <button onClick={(e) => {
+                            this.props.searchItem({
+                                nameSearch: this.state.nameSearch
+                            })
+                        }}>search</button>
                     </div>
                     <table className="list-item">
                         <tbody>

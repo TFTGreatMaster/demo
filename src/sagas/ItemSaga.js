@@ -3,6 +3,7 @@ import getItems from '../fetchAPI/getItems';
 import addApi from '../fetchAPI/addApi';
 import deleteApi from '../fetchAPI/deleteApi';
 import updateApi from '../fetchAPI/updateApi';
+import searchApi from '../fetchAPI/searchApi';
 import * as types from '../constant';
 function* getListItem() {
     try {
@@ -75,9 +76,27 @@ function* updateItem(action) {
         })
     }
 }
+
+function* searchItem(action) {
+    try {
+        const res = yield searchApi(action.payload)
+        yield put({
+            type: types.GET_ITEM_SUCCESS,
+            payload: res
+        })
+    } catch (error) {
+        yield put({
+            type: types.GET_ITEM_FAILURE,
+            payload: {
+                errMessage: error.message
+            }
+        })
+    }
+}
 export const ItemSaga = [
     takeEvery(types.GET_ITEM_REQUEST, getListItem),
     takeEvery(types.ADD_ITEM_REQUEST, postItem),
     takeEvery(types.DELETE_ITEM_REQUEST, deleteItem),
-    takeEvery(types.UPDATE_ITEM_REQUEST, updateItem)
+    takeEvery(types.UPDATE_ITEM_REQUEST, updateItem),
+    takeEvery(types.SEARCH_ITEM_REQUEST, searchItem)
 ]
