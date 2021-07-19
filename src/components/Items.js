@@ -7,7 +7,9 @@ class Items extends Component {
             id: '',
             name: ''
         },
-        dataSearch: ''
+        dataSearch: '',
+
+
     }
     render() {
         let listData = []
@@ -33,6 +35,26 @@ class Items extends Component {
                 )
             })
         }
+
+        let page = []
+        let activePage = this.props.activePage
+        let totalPage = this.props.totalPage
+    
+        for (let i = 1; i <= totalPage; i++) {
+            page.push(i)
+        }
+        let pagination = page.map((item,key)=>{
+            if(activePage===item){
+                return(
+                    <button  key ={key} onClick={()=>this.props.activePage(item)} >{item}</button>
+                )
+            }
+            else{
+                return(
+                    <button key ={key} onClick={()=>this.props.activePage(item)} >{item}</button>
+                )
+            }
+        })
         return (
             <div className="" >
                 <div>
@@ -86,6 +108,7 @@ class Items extends Component {
                         </tbody>
 
                     </table>
+                    {pagination}
                 </div>
             </div>
         )

@@ -1,11 +1,10 @@
-export default function addApi(data) {
-    console.log('api add', data);
+import {LIMIT} from '../constant'
+export default function paginationApi(data) {
     return new Promise((resolve, reject) => {
-        const url = `http://localhost:3001/items`;
+        const url = `http://localhost:3001/items/pagination?_limit=${LIMIT}&_page=${data}`
+        console.log(url);
         fetch(url, {
-            method: 'POST',
-            headers: { 'content-type': 'Application/json' },
-            body: JSON.stringify(data)
+            method: 'GET'
         })
             .then(response => response.json())
             .then(res => {

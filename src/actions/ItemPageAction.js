@@ -29,3 +29,12 @@ export function searchRequest(payload) {
         payload
     })
 }
+
+
+export function paginationRequest(payload) {
+    return ({
+        type: types.PAGINATION_ITEM_REQUEST,
+        payload
+    })
+}
+
